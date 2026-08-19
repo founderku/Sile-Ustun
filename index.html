@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Şile Üstün Kuyumcusu — Üsküdar, İstanbul</title>
+<meta name="description" content="Şile Üstün Kuyumcusu — Üsküdar'da güvenilir, şık ve kaliteli altın mücevher. 1988'den bu yana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141110;
+    --charcoal:#1c1815;
+    --panel:#221d19;
+    --cream:#f6efe2;
+    --parchment:#efe4d0;
+    --gold:#c9a24b;
+    --gold-bright:#e8c874;
+    --gold-deep:#8a6a2c;
+    --line: rgba(201,162,75,0.28);
+    --maroon:#6e1f22;
+    --shadow: 0 30px 60px -20px rgba(0,0,0,0.55);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .display{
+    font-family:'Cinzel', serif;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  /* texture overlay */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(20,17,16,0.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    transition:padding .3s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+  }
+  .brand .mark{
+    width:38px; height:38px; border:1px solid var(--gold);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel',serif; font-size:15px; color:var(--gold-bright);
+    flex-shrink:0;
+  }
+  .brand-text{line-height:1.1;}
+  .brand-text .tr{font-family:'Cinzel',serif; font-size:15px; letter-spacing:0.08em; color:var(--cream);}
+  .brand-text .en{font-size:10px; letter-spacing:0.18em; color:var(--gold); text-transform:uppercase; margin-top:3px;}
+
+  nav.links{display:flex; gap:36px; align-items:center;}
+  nav.links a{
+    font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--parchment); opacity:0.82; position:relative; padding-bottom:4px;
+  }
+  nav.links a:hover{opacity:1;}
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+
+  .nav-cta{
+    display:flex; align-items:center; gap:14px;
+  }
+  .btn-call{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--gold); color:var(--gold-bright);
+    padding:9px 18px; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    border-radius:2px; transition:all .25s ease; white-space:nowrap;
+  }
+  .btn-call:hover{background:var(--gold); color:var(--ink);}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:1px; background:var(--gold-bright);}
+
+  .lang-toggle{
+    display:flex; align-items:center; border:1px solid var(--line); border-radius:2px; overflow:hidden;
+    flex-shrink:0;
+  }
+  .lang-toggle button{
+    background:none; border:none; color:var(--parchment); opacity:0.6;
+    font-family:'Manrope',sans-serif; font-size:11.5px; letter-spacing:0.08em;
+    padding:8px 12px; cursor:pointer; transition:all .2s ease;
+  }
+  .lang-toggle button.active{background:var(--gold); color:var(--ink); opacity:1; font-weight:700;}
+  .lang-toggle button:not(.active):hover{opacity:1; color:var(--gold-bright);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end;
+    padding-top:120px;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+  }
+  .hero-bg img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%;
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .hero-bg::after{
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(20,17,16,0.35) 0%, rgba(20,17,16,0.35) 30%, rgba(20,17,16,0.85) 78%, rgba(20,17,16,0.98) 100%),
+      linear-gradient(90deg, rgba(20,17,16,0.75) 0%, rgba(20,17,16,0.15) 45%, rgba(20,17,16,0.15) 55%, rgba(20,17,16,0.75) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2; width:100%;
+    padding-bottom:90px;
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:14px;
+    font-size:12px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold-bright);
+    margin-bottom:26px;
+  }
+  .eyebrow .rule{width:44px; height:1px; background:var(--gold);}
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.6rem);
+    line-height:0.98;
+    color:var(--cream);
+    max-width:820px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--gold-bright);
+    display:block;
+  }
+  .hero-sub{
+    max-width:480px; margin-top:26px;
+    font-size:15.5px; line-height:1.75; color:var(--parchment); opacity:0.82;
+  }
+  .hero-sub .en{
+    display:block; margin-top:10px; font-size:13.5px; font-style:italic; opacity:0.75;
+  }
+  .hero-actions{
+    display:flex; gap:16px; margin-top:44px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--gold); color:var(--ink); padding:16px 34px;
+    font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700;
+    border-radius:2px; display:inline-flex; align-items:center; gap:10px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:0 10px 30px -8px rgba(201,162,75,0.4);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 36px -8px rgba(201,162,75,0.55);}
+  .btn-secondary{
+    border:1px solid rgba(246,239,226,0.35); color:var(--cream); padding:16px 30px;
+    font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase;
+    border-radius:2px; display:inline-flex; align-items:center; gap:10px;
+    transition:all .25s ease;
+  }
+  .btn-secondary:hover{border-color:var(--gold); color:var(--gold-bright);}
+
+  .hero-meta{
+    position:absolute; right:28px; bottom:44px; z-index:2;
+    display:flex; flex-direction:column; align-items:flex-end; gap:10px;
+  }
+  .stars{color:var(--gold-bright); font-size:15px; letter-spacing:2px;}
+  .hero-meta .score{font-size:12.5px; color:var(--parchment); opacity:0.75; text-align:right;}
+
+  /* scroll cue */
+  .scroll-cue{
+    position:absolute; left:28px; bottom:44px; z-index:2;
+    display:flex; align-items:center; gap:10px;
+    font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--parchment); opacity:0.6;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--gold), transparent); position:relative; overflow:hidden;}
+  .scroll-cue .line::after{
+    content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+    background:var(--gold-bright); animation:scrolldown 2.2s infinite;
+  }
+  @keyframes scrolldown{ to{ top:100%; } }
+
+  /* ===== MARQUEE STRIP ===== */
+  .strip{
+    background:var(--gold); color:var(--ink); overflow:hidden;
+    padding:13px 0; position:relative;
+  }
+  .strip-track{
+    display:flex; gap:46px; white-space:nowrap;
+    animation:marquee 26s linear infinite;
+    width:max-content;
+  }
+  .strip-track span{
+    font-family:'Cinzel',serif; font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase;
+    display:flex; align-items:center; gap:46px;
+  }
+  .strip-track span::after{content:'✦'; margin-left:46px; opacity:0.6;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ===== SECTION LABELS ===== */
+  .section{padding:120px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:40px; margin-bottom:64px; flex-wrap:wrap;
+  }
+  .tag{
+    font-size:12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold);
+    display:flex; align-items:center; gap:12px; margin-bottom:18px;
+  }
+  .tag .rule{width:30px; height:1px; background:var(--gold);}
+  .section-head h2{
+    font-size:clamp(2.1rem, 4vw, 3.2rem); color:var(--cream); max-width:640px;
+  }
+  .section-head p{
+    max-width:340px; font-size:14.5px; line-height:1.8; color:var(--parchment); opacity:0.72;
+    padding-bottom:6px;
+  }
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .about-photo{
+    position:relative; border-radius:2px; overflow:hidden; box-shadow:var(--shadow);
+    aspect-ratio:4/5;
+  }
+  .about-photo .frame{
+    position:absolute; inset:14px; border:1px solid rgba(246,239,226,0.4); z-index:2; pointer-events:none;
+  }
+  .about-text p{
+    font-size:16px; line-height:1.9; color:var(--parchment); opacity:0.85; margin-bottom:20px;
+  }
+  .about-text p.en{font-style:italic; font-size:14.5px; opacity:0.65;}
+  .stat-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px;
+    border-top:1px solid var(--line); padding-top:36px;
+  }
+  .stat-row .num{
+    font-family:'Cormorant Garamond',serif; font-size:2.6rem; color:var(--gold-bright); line-height:1;
+  }
+  .stat-row .lab{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); opacity:0.6; margin-top:8px;
+  }
+
+  /* ===== GALLERY ===== */
+  .gallery{background:var(--ink);}
+  .gal-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-auto-rows:120px;
+    gap:14px;
+  }
+  .gal-item{
+    position:relative; overflow:hidden; border-radius:2px; cursor:pointer;
+  }
+  .gal-item img{transition:transform .7s cubic-bezier(.2,.8,.2,1); filter:saturate(1.05);}
+  .gal-item:hover img{transform:scale(1.07);}
+  .gal-item::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 50%, rgba(20,17,16,0.75) 100%);
+    opacity:0; transition:opacity .35s ease;
+  }
+  .gal-item:hover::after{opacity:1;}
+  .gal-cap{
+    position:absolute; left:16px; bottom:14px; z-index:2;
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream);
+    opacity:0; transform:translateY(8px); transition:all .35s ease;
+  }
+  .gal-item:hover .gal-cap{opacity:1; transform:translateY(0);}
+
+  .g1{grid-column:span 2; grid-row:span 3;}
+  .g2{grid-column:span 2; grid-row:span 2;}
+  .g3{grid-column:span 2; grid-row:span 2;}
+  .g4{grid-column:span 2; grid-row:span 2;}
+  .g5{grid-column:span 2; grid-row:span 3;}
+  .g6{grid-column:span 2; grid-row:span 2;}
+  .g7{grid-column:span 2; grid-row:span 2;}
+  .g8{grid-column:span 2; grid-row:span 2;}
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .serv-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line);
+  }
+  .serv-card{
+    background:var(--charcoal); padding:48px 38px; transition:background .3s ease;
+  }
+  .serv-card:hover{background:var(--panel);}
+  .serv-num{
+    font-family:'Cinzel',serif; font-size:12px; color:var(--gold); letter-spacing:0.1em; margin-bottom:28px; display:block;
+  }
+  .serv-card h3{font-size:1.55rem; color:var(--cream); margin-bottom:14px;}
+  .serv-card p{font-size:14px; line-height:1.75; color:var(--parchment); opacity:0.68;}
+  .serv-card p.en{font-size:12.5px; font-style:italic; margin-top:8px; opacity:0.55;}
+
+  /* ===== REVIEWS ===== */
+  .reviews{background:var(--ink);}
+  .rev-top{
+    display:flex; align-items:center; gap:28px; margin-bottom:56px; flex-wrap:wrap;
+  }
+  .rev-score{
+    font-family:'Cormorant Garamond',serif; font-size:4.5rem; color:var(--gold-bright); line-height:1;
+  }
+  .rev-score-meta{font-size:13px; color:var(--parchment); opacity:0.7; line-height:1.6;}
+  .rev-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  .rev-card{
+    background:var(--panel); border:1px solid var(--line); padding:34px 30px; border-radius:2px;
+  }
+  .rev-more{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    transition:all .25s ease;
+  }
+  .rev-more:hover{border-color:var(--gold); background:var(--charcoal);}
+  .rev-more-title{font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--cream); margin-bottom:10px;}
+  .rev-card .stars{font-size:13px; margin-bottom:18px; display:block;}
+  .rev-card p{font-size:15px; line-height:1.75; color:var(--parchment); opacity:0.88; font-style:italic; margin-bottom:22px;}
+  .rev-who{display:flex; align-items:center; gap:12px;}
+  .rev-avatar{
+    width:36px; height:36px; border-radius:50%; background:var(--gold-deep); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:14px; flex-shrink:0;
+  }
+  .rev-name{font-size:13px; color:var(--cream);}
+  .rev-date{font-size:11px; color:var(--parchment); opacity:0.5;}
+
+  /* ===== VISIT / CONTACT ===== */
+  .visit{
+    background:var(--charcoal); border-top:1px solid var(--line);
+    position:relative; overflow:hidden;
+  }
+  .visit-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:0;
+    border:1px solid var(--line);
+  }
+  .visit-info{padding:70px 60px; position:relative;}
+  .visit-info .tag{margin-bottom:20px;}
+  .visit-info h2{font-size:clamp(2rem,3.4vw,2.8rem); margin-bottom:36px; color:var(--cream);}
+  .info-row{
+    display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--line);
+  }
+  .info-row:last-of-type{border-bottom:1px solid var(--line);}
+  .info-ico{
+    width:20px; flex-shrink:0; color:var(--gold); margin-top:3px;
+  }
+  .info-label{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .info-val{font-size:15px; color:var(--cream); line-height:1.6;}
+  .info-val a{color:var(--gold-bright); border-bottom:1px solid transparent;}
+  .info-val a:hover{border-color:var(--gold-bright);}
+  .hours-table{width:100%; font-size:14px; margin-top:2px;}
+  .hours-table tr td{padding:2px 0; color:var(--parchment); opacity:0.85;}
+  .hours-table tr td:last-child{text-align:right; color:var(--cream);}
+
+  .visit-cta{
+    padding:70px 60px; background:var(--panel);
+    display:flex; flex-direction:column; justify-content:center; gap:20px;
+  }
+  .visit-cta .serif{font-size:1.7rem; color:var(--cream); margin-bottom:6px;}
+  .visit-cta p{font-size:14px; color:var(--parchment); opacity:0.7; line-height:1.7; margin-bottom:10px;}
+  .cta-stack{display:flex; flex-direction:column; gap:14px; margin-top:12px;}
+  .cta-stack .btn-primary, .cta-stack .btn-secondary{width:100%; justify-content:center;}
+
+  .map-embed{
+    margin-top:8px; border:1px solid var(--line); border-radius:2px; overflow:hidden; height:220px; filter:grayscale(0.4) contrast(1.05);
+  }
+  .map-embed iframe{width:100%; height:100%; border:0;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--ink); padding:56px 0 28px; border-top:1px solid var(--line);
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;
+    padding-bottom:36px; border-bottom:1px solid var(--line);
+  }
+  .foot-brand{display:flex; align-items:center; gap:14px;}
+  .foot-links{display:flex; gap:32px;}
+  .foot-links a{font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--parchment); opacity:0.7;}
+  .foot-links a:hover{opacity:1; color:var(--gold-bright);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; padding-top:26px; font-size:12px; color:var(--parchment); opacity:0.45; flex-wrap:wrap; gap:12px;
+  }
+
+  /* floating call button mobile */
+  .float-call{
+    display:none; position:fixed; bottom:22px; right:22px; z-index:90;
+    width:58px; height:58px; border-radius:50%; background:var(--gold);
+    align-items:center; justify-content:center; box-shadow:0 12px 28px -6px rgba(201,162,75,0.55);
+  }
+  .float-call svg{width:24px; height:24px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .about-grid{grid-template-columns:1fr; gap:48px;}
+    .about-photo{aspect-ratio:16/10;}
+    .serv-grid{grid-template-columns:1fr;}
+    .rev-grid{grid-template-columns:1fr;}
+    .visit-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:repeat(4,1fr); grid-auto-rows:100px;}
+    .g1,.g5{grid-column:span 4; grid-row:span 3;}
+    .g2,.g3,.g4,.g6,.g7,.g8{grid-column:span 2; grid-row:span 2;}
+  }
+  @media (max-width: 640px){
+    .wrap{padding:0 20px;}
+    .section{padding:80px 0;}
+    .hero{padding-top:100px; flex-direction:column; align-items:flex-start;}
+    .hero-content{padding-bottom:60px; width:100%;}
+    .hero-meta{position:static; align-items:flex-start; margin-top:8px; padding:0 20px 40px;}
+    .scroll-cue{display:none;}
+    .hero-actions{width:100%;}
+    .hero-actions a{flex:1; justify-content:center;}
+    .about-photo{aspect-ratio:4/3;}
+    .stat-row{grid-template-columns:1fr; gap:22px;}
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .g1,.g5{grid-column:span 2; grid-row:span 3;}
+    .g2,.g3,.g4,.g6,.g7,.g8{grid-column:span 2; grid-row:span 2;}
+    .visit-info, .visit-cta{padding:44px 26px;}
+    .foot-grid{flex-direction:column; align-items:flex-start;}
+    .float-call{display:flex;}
+    .section-head{margin-bottom:44px;}
+    .brand-text .en{white-space:nowrap; font-size:9px; letter-spacing:0.1em;}
+    .est-part{display:none;}
+    .nav{padding:16px 20px;}
+    .lang-toggle button{padding:7px 10px; font-size:11px;}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- NAV -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="mark">ŞÜ</div>
+      <div class="brand-text">
+        <div class="tr">Şile Üstün</div>
+        <div class="en"><span data-tr="Kuyumcusu" data-en="Jewelry Store">Kuyumcusu</span><span class="est-part" data-tr=" · Est. Üsküdar" data-en=" · Est. Üsküdar"> · Est. Üsküdar</span></div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#hakkimizda" data-tr="Hakkımızda" data-en="About">Hakkımızda</a>
+      <a href="#koleksiyon" data-tr="Koleksiyon" data-en="Gallery">Koleksiyon</a>
+      <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+      <a href="#yorumlar" data-tr="Yorumlar" data-en="Reviews">Yorumlar</a>
+      <a href="#ziyaret" data-tr="Ziyaret Edin" data-en="Visit Us">Ziyaret Edin</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-toggle">
+        <button type="button" data-lang-btn="tr" class="active">TR</button>
+        <button type="button" data-lang-btn="en">EN</button>
+      </div>
+      <a href="tel:+902165533872" class="btn-call">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-tr="Ara" data-en="Call">Ara</span>
+      </a>
+      <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="images/storefront_full.jpg" alt="Şile Üstün Kuyumcusu mağaza vitrini">
+  </div>
+  <div class="wrap hero-content">
+    <div class="eyebrow"><span class="rule"></span>Üsküdar, İstanbul</div>
+    <h1><span data-tr="Zamanın" data-en="Gold that">Zamanın</span><em><span data-tr="ötesinde altın." data-en="transcends time.">ötesinde altın.</span></em></h1>
+    <p class="hero-sub">
+      <span data-tr="Selamiali Efendi Caddesi'nde, yıllardır güven ve zarafetle işlenen altın mücevherler. Bilezikten kolyeye, her parça ustalıkla seçilir." data-en="On Selamiali Efendi Street, fine gold jewelry crafted for years with trust and elegance. From bracelets to necklaces, every piece is chosen with care.">Selamiali Efendi Caddesi'nde, yıllardır güven ve zarafetle işlenen altın mücevherler. Bilezikten kolyeye, her parça ustalıkla seçilir.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+902165533872" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-tr="Hemen Ara" data-en="Call Now">Hemen Ara</span>
+      </a>
+      <a href="#ziyaret" class="btn-secondary">
+        <span data-tr="Yol Tarifi Al" data-en="Get Directions">Yol Tarifi Al</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-tr="Keşfet" data-en="Explore">Keşfet</span><div class="line"></div></div>
+  <div class="hero-meta">
+    <div class="stars">★★★★☆</div>
+    <div class="score">3.5 / 5 &nbsp;·&nbsp; <span data-tr="Google değerlendirmeleri" data-en="Google reviews">Google değerlendirmeleri</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="strip">
+  <div class="strip-track">
+    <span data-tr="Altın Bilezik" data-en="Gold Bracelet">Altın Bilezik</span><span data-tr="İsim Kolye" data-en="Name Necklace">İsim Kolye</span><span data-tr="Pırlanta" data-en="Diamond">Pırlanta</span><span data-tr="Yüzük" data-en="Ring">Yüzük</span><span data-tr="Kolye" data-en="Necklace">Kolye</span><span data-tr="Küpe" data-en="Earring">Küpe</span>
+    <span data-tr="Altın Bilezik" data-en="Gold Bracelet">Altın Bilezik</span><span data-tr="İsim Kolye" data-en="Name Necklace">İsim Kolye</span><span data-tr="Pırlanta" data-en="Diamond">Pırlanta</span><span data-tr="Yüzük" data-en="Ring">Yüzük</span><span data-tr="Kolye" data-en="Necklace">Kolye</span><span data-tr="Küpe" data-en="Earring">Küpe</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section about" id="hakkimizda">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <img src="images/interior_hallway.jpg" alt="Mağaza içi vitrin ve tezgah">
+      <div class="frame"></div>
+    </div>
+    <div class="about-text">
+      <div class="tag"><span class="rule"></span><span data-tr="Hakkımızda" data-en="About Us">Hakkımızda</span></div>
+      <h2 style="font-size:2.4rem; margin-bottom:26px; color:var(--cream);"><span data-tr="Üsküdar'ın" data-en="Üsküdar's">Üsküdar'ın</span> <em style="color:var(--gold-bright); font-style:italic;"><span data-tr="güvenilir" data-en="trusted">güvenilir</span></em> <span data-tr="kuyumcusu" data-en="jeweler">kuyumcusu</span></h2>
+      <p data-tr="Şile Üstün Kuyumcusu, Mimar Sinan Mahallesi'nde müşterilerine samimi ve güler yüzlü hizmet sunar. Vitrinlerimizde bilezikten kolyeye, yüzükten isim kolyelere kadar geniş bir altın koleksiyonu sizi bekliyor." data-en="Şile Üstün Kuyumcusu offers warm, friendly service to customers in the Mimar Sinan neighborhood. Our windows hold a wide gold collection — from bracelets to necklaces, rings to name necklaces.">Şile Üstün Kuyumcusu, Mimar Sinan Mahallesi'nde müşterilerine samimi ve güler yüzlü hizmet sunar. Vitrinlerimizde bilezikten kolyeye, yüzükten isim kolyelere kadar geniş bir altın koleksiyonu sizi bekliyor.</p>
+      <p data-tr="Her parça özenle seçilir, her müşteri değerli bir konuk olarak ağırlanır. Yıllara dayanan tecrübemizle, aradığınız altını doğru fiyatla ve güvenle sunuyoruz." data-en="Every piece is chosen with care, and every customer is welcomed as an honored guest. With years of experience, we offer the gold you're looking for at a fair price and with confidence.">Her parça özenle seçilir, her müşteri değerli bir konuk olarak ağırlanır. Yıllara dayanan tecrübemizle, aradığınız altını doğru fiyatla ve güvenle sunuyoruz.</p>
+      <div class="stat-row">
+        <div>
+          <div class="num">6+</div>
+          <div class="lab" data-tr="Yıllık Deneyim" data-en="Years of Experience">Yıllık Deneyim</div>
+        </div>
+        <div>
+          <div class="num">3.5</div>
+          <div class="lab" data-tr="Google Puanı" data-en="Google Rating">Google Puanı</div>
+        </div>
+        <div>
+          <div class="num">100%</div>
+          <div class="lab" data-tr="22 Ayar Altın" data-en="22K Gold">22 Ayar Altın</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="koleksiyon">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="tag"><span class="rule"></span><span data-tr="Vitrinden" data-en="From Our Showcase">Vitrinden</span></div>
+        <h2><span data-tr="Mağazamızdan" data-en="Glimpses of">Mağazamızdan</span> <em style="color:var(--gold-bright); font-style:italic;"><span data-tr="kareler" data-en="our store">kareler</span></em></h2>
+      </div>
+      <p data-tr="Vitrinlerimiz ve iç mekanımızdan gerçek fotoğraflar. Gelin, yakından görün." data-en="Real photos from our windows and interior. Come take a closer look.">Vitrinlerimiz ve iç mekanımızdan gerçek fotoğraflar. Gelin, yakından görün.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item g1"><img src="images/display_case.jpg" alt="Altın bilezik ve kolye vitrini"><span class="gal-cap" data-tr="Vitrin — Bilezik &amp; Kolye" data-en="Window — Bracelets &amp; Necklaces">Vitrin — Bilezik &amp; Kolye</span></div>
+      <div class="gal-item g2"><img src="images/rings_display.jpg" alt="Yüzük koleksiyonu"><span class="gal-cap" data-tr="Yüzük Koleksiyonu" data-en="Ring Collection">Yüzük Koleksiyonu</span></div>
+      <div class="gal-item g3"><img src="images/storefront_angle.jpg" alt="Mağaza girişi"><span class="gal-cap" data-tr="Mağaza Girişi" data-en="Store Entrance">Mağaza Girişi</span></div>
+      <div class="gal-item g4"><img src="images/interior_black_wall.jpg" alt="İç mekan vitrin"><span class="gal-cap" data-tr="İç Mekan" data-en="Interior">İç Mekan</span></div>
+      <div class="gal-item g5"><img src="images/interior_floor.jpg" alt="Altın kolye ve bilezik reyonu"><span class="gal-cap" data-tr="Kolye &amp; Bilezik Reyonu" data-en="Necklace &amp; Bracelet Section">Kolye &amp; Bilezik Reyonu</span></div>
+      <div class="gal-item g6"><img src="images/counter_close.jpg" alt="Satış tezgahı"><span class="gal-cap" data-tr="Satış Tezgahı" data-en="Sales Counter">Satış Tezgahı</span></div>
+      <div class="gal-item g7"><img src="images/interior_mirrors_entrance.jpg" alt="Bekleme alanı"><span class="gal-cap" data-tr="Bekleme Alanı" data-en="Waiting Area">Bekleme Alanı</span></div>
+      <div class="gal-item g8"><img src="images/glass_case_close.jpg" alt="Cam vitrin detayı"><span class="gal-cap" data-tr="Vitrin Detayı" data-en="Window Detail">Vitrin Detayı</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="hizmetler">
+  <div class="wrap" style="padding:120px 28px 0;">
+    <div class="section-head" style="margin-bottom:0; padding-bottom:64px;">
+      <div>
+        <div class="tag"><span class="rule"></span><span data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</span></div>
+        <h2><span data-tr="Neler" data-en="What we">Neler</span> <em style="color:var(--gold-bright); font-style:italic;"><span data-tr="sunuyoruz" data-en="offer">sunuyoruz</span></em></h2>
+      </div>
+      <p data-tr="Alımdan tamire, her ihtiyacınız için buradayız." data-en="From purchase to repair, we're here for all your needs.">Alımdan tamire, her ihtiyacınız için buradayız.</p>
+    </div>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card">
+      <span class="serv-num">01</span>
+      <h3 data-tr="Altın Alım &amp; Satım" data-en="Gold Buying &amp; Selling">Altın Alım &amp; Satım</h3>
+      <p data-tr="Bilezik, kolye, yüzük ve isim kolye çeşitleriyle geniş bir seçki. Güncel gram fiyatlarıyla adil alışveriş." data-en="A wide selection of bracelets, necklaces, rings and name necklaces. Fair trading at current gold rates.">Bilezik, kolye, yüzük ve isim kolye çeşitleriyle geniş bir seçki. Güncel gram fiyatlarıyla adil alışveriş.</p>
+    </div>
+    <div class="serv-card">
+      <span class="serv-num">02</span>
+      <h3 data-tr="Ekspertiz &amp; Değerleme" data-en="Appraisal &amp; Valuation">Ekspertiz &amp; Değerleme</h3>
+      <p data-tr="Elinizdeki altın ve mücevherler için güvenilir değerleme hizmeti sunuyoruz." data-en="Trusted appraisal services for your existing gold and jewelry pieces.">Elinizdeki altın ve mücevherler için güvenilir değerleme hizmeti sunuyoruz.</p>
+    </div>
+    <div class="serv-card">
+      <span class="serv-num">03</span>
+      <h3 data-tr="Kişiye Özel Sipariş" data-en="Custom Orders">Kişiye Özel Sipariş</h3>
+      <p data-tr="İsim kolyeden özel tasarım takılara kadar, isteğinize göre özel üretim imkanı." data-en="From name necklaces to bespoke jewelry pieces, made to your request.">İsim kolyeden özel tasarım takılara kadar, isteğinize göre özel üretim imkanı.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews" id="yorumlar">
+  <div class="wrap">
+    <div class="rev-top">
+      <div class="rev-score">3.5</div>
+      <div class="rev-score-meta">★★★★☆ &nbsp;·&nbsp; <span data-tr="Google üzerinden müşteri değerlendirmeleri" data-en="Customer reviews via Google">Google üzerinden müşteri değerlendirmeleri</span></div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card">
+        <span class="stars">★★★★★</span>
+        <p data-tr="&quot;Çok memnun kaldık ve büyük bir alışveriş yaptık. Kesinlikle tekrar geleceğiz, her şey için teşekkürler.&quot;" data-en="&quot;We were very pleased and made a large purchase. We will definitely come again — thank you for everything.&quot;">"Çok memnun kaldık ve büyük bir alışveriş yaptık. Kesinlikle tekrar geleceğiz, her şey için teşekkürler."</p>
+        <div class="rev-who">
+          <div class="rev-avatar">S</div>
+          <div>
+            <div class="rev-name">Sunny Day</div>
+            <div class="rev-date" data-tr="4 yıl önce" data-en="4 years ago">4 yıl önce</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card">
+        <span class="stars">★★★★★</span>
+        <p data-tr="&quot;Alışverişimden çok memnun kaldım. Güler yüzlü, ilgili ve güvenilir bir hizmet aldım. Özellikle Ruhi Bey ve Orkun Üstün Bey'e teşekkür ederim.&quot;" data-en="&quot;I was very pleased with my purchase. I received friendly, attentive and trustworthy service. I'd especially like to thank Mr. Ruhi and Mr. Orkun Üstün.&quot;">"Alışverişimden çok memnun kaldım. Güler yüzlü, ilgili ve güvenilir bir hizmet aldım. Özellikle Ruhi Bey ve Orkun Üstün Bey'e teşekkür ederim."</p>
+        <div class="rev-who">
+          <div class="rev-avatar">İ</div>
+          <div>
+            <div class="rev-name">İnci Süngü</div>
+            <div class="rev-date" data-tr="2 hafta önce" data-en="2 weeks ago">2 hafta önce</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=%C5%9Eile+%C3%9Cst%C3%BCn+Kuyumcusu+%C3%9Csk%C3%BCdar" target="_blank" rel="noopener" class="rev-card rev-more">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--gold-bright); margin-bottom:16px;"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        <div class="rev-more-title" data-tr="Tüm Yorumları Gör" data-en="See All Reviews">Tüm Yorumları Gör</div>
+        <p style="font-style:normal; opacity:0.6; margin-bottom:0;" data-tr="Google Haritalar'daki değerlendirmelerin tamamına göz atın." data-en="Browse all our ratings and reviews on Google Maps.">Google Haritalar'daki değerlendirmelerin tamamına göz atın.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT / CONTACT -->
+<section class="section visit" id="ziyaret">
+  <div class="wrap">
+    <div class="tag" style="margin-bottom:18px;"><span class="rule"></span><span data-tr="Ziyaret Edin" data-en="Visit Us">Ziyaret Edin</span></div>
+    <div class="visit-grid">
+      <div class="visit-info">
+        <h2 data-tr="Bize Uğrayın" data-en="Come Visit Us">Bize Uğrayın</h2>
+
+        <div class="info-row">
+          <div class="info-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="info-label" data-tr="Adres" data-en="Address">Adres</div>
+            <div class="info-val">Mimar Sinan Mahallesi, Merkez,<br>Selamiali Efendi Cd. 20/A,<br>34664 Üsküdar / İstanbul</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="info-label" data-tr="Telefon" data-en="Phone">Telefon</div>
+            <div class="info-val"><a href="tel:+902165533872">+90 216 553 38 72</a></div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div style="width:100%;">
+            <div class="info-label" data-tr="Çalışma Saatleri" data-en="Working Hours">Çalışma Saatleri</div>
+            <table class="hours-table">
+              <tr><td data-tr="Pazartesi – Cumartesi" data-en="Monday – Saturday">Pazartesi – Cumartesi</td><td>10:00 – 20:00</td></tr>
+              <tr><td data-tr="Pazar" data-en="Sunday">Pazar</td><td data-tr="Kapalı" data-en="Closed">Kapalı</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="visit-cta">
+        <div class="serif" data-tr="Sorularınız mı var?" data-en="Have questions?">Sorularınız mı var?</div>
+        <p data-tr="Hemen arayın, size yardımcı olalım. Veya konumumuza yol tarifi alın." data-en="Call us directly and we'll be happy to help, or get directions to our store.">Hemen arayın, size yardımcı olalım. Veya konumumuza yol tarifi alın.</p>
+        <div class="cta-stack">
+          <a href="tel:+902165533872" class="btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +90 216 553 38 72
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=%C5%9Eile+%C3%9Cst%C3%BCn+Kuyumcusu+%C3%9Csk%C3%BCdar" target="_blank" rel="noopener" class="btn-secondary">
+            <span data-tr="Google Haritalar'da Aç" data-en="Open in Google Maps">Google Haritalar'da Aç</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Mimar+Sinan+Mahallesi,+Selamiali+Efendi+Cd.+20/A,+34664+%C3%9Csk%C3%BCdar/%C4%B0stanbul&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="mark">ŞÜ</div>
+        <div class="brand-text">
+          <div class="tr">Şile Üstün Kuyumcusu</div>
+          <div class="en">Üsküdar, İstanbul</div>
+        </div>
+      </div>
+      <div class="foot-links">
+        <a href="#hakkimizda" data-tr="Hakkımızda" data-en="About">Hakkımızda</a>
+        <a href="#koleksiyon" data-tr="Koleksiyon" data-en="Gallery">Koleksiyon</a>
+        <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+        <a href="#ziyaret" data-tr="İletişim" data-en="Contact">İletişim</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-tr="© 2026 Şile Üstün Kuyumcusu. Tüm hakları saklıdır." data-en="© 2026 Şile Üstün Kuyumcusu. All rights reserved.">© 2026 Şile Üstün Kuyumcusu. Tüm hakları saklıdır.</span>
+      <span>Mimar Sinan Mah., Selamiali Efendi Cd. 20/A, Üsküdar</span>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+902165533872" class="float-call" aria-label="Ara">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#141110" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+
+<script>
+  // mobile menu toggle -> simple: show links as dropdown
+  const burger = document.querySelector('.burger');
+  const links = document.querySelector('nav.links');
+  burger.addEventListener('click', () => {
+    if(links.style.display === 'flex'){
+      links.style.display = 'none';
+    } else {
+      links.style.display = 'flex';
+      links.style.position = 'fixed';
+      links.style.top = '76px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(20,17,16,0.98)';
+      links.style.flexDirection = 'column';
+      links.style.padding = '28px';
+      links.style.gap = '22px';
+      links.style.borderBottom = '1px solid rgba(201,162,75,0.28)';
+    }
+  });
+  document.querySelectorAll('nav.links a').forEach(a => a.addEventListener('click', () => {
+    if(window.innerWidth <= 980) links.style.display = 'none';
+  }));
+
+  // language toggle
+  const langButtons = document.querySelectorAll('[data-lang-btn]');
+  function applyLang(lang){
+    document.querySelectorAll('[data-tr]').forEach(el => {
+      const val = el.getAttribute(lang === 'tr' ? 'data-tr' : 'data-en');
+      if(val !== null) el.textContent = val;
+    });
+    document.documentElement.setAttribute('lang', lang);
+    langButtons.forEach(b => b.classList.toggle('active', b.dataset.langBtn === lang));
+  }
+  langButtons.forEach(btn => btn.addEventListener('click', () => applyLang(btn.dataset.langBtn)));
+
+  // header shrink on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){ header.style.borderBottom = '1px solid rgba(201,162,75,0.45)'; }
+    else { header.style.borderBottom = '1px solid rgba(201,162,75,0.28)'; }
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.serv-card, .rev-card, .gal-item, .about-text, .about-photo');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .7s ease, transform .7s ease';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
